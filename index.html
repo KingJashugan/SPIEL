@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>SPIEL Essen 2026 – Neuheiten-Bericht</title>
+<style>
+:root{--bg:#f6f4f0;--fg:#1d1b1a;--muted:#6a645e;--card:#fff;--line:#ddd7cf;--accent:#b3261e;--chip:#ece7df}
+@media (prefers-color-scheme:dark){:root{--bg:#171514;--fg:#efebe6;--muted:#a39b92;--card:#211e1c;--line:#38332f;--accent:#ff7a6e;--chip:#2c2825}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:32px 20px 64px}
+h1{font:800 clamp(2rem,6vw,3.2rem)/1.05 'Arial Narrow',Arial,sans-serif;text-transform:uppercase;letter-spacing:-.01em;margin:0 0 8px}
+h1 span{color:var(--accent)}
+.lead{color:var(--muted);max-width:65ch}
+.note{border-left:4px solid var(--accent);padding:8px 14px;background:var(--card);margin:20px 0;font-size:.92rem}
+a{color:var(--accent)}
+/* Steuerleiste */
+.bar{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:10px 0;margin-top:18px;font:600 .85rem Arial,sans-serif}
+.bar .row{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.bar label{display:flex;align-items:center;gap:6px;color:var(--muted)}
+select,input[type=search]{font:inherit;padding:5px 8px;border:1px solid var(--line);background:var(--card);color:var(--fg);border-radius:4px;min-width:0}
+input[type=search]{width:12em;max-width:100%}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--chip);color:var(--fg);padding:4px 10px;border-radius:99px;font:inherit;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.count{color:var(--muted);margin-left:auto}
+/* Übersichtstabelle */
+.tablewrap{overflow-x:auto;margin-top:16px;border:1px solid var(--line);background:var(--card)}
+table{border-collapse:collapse;width:100%;font:.85rem Arial,sans-serif;min-width:640px}
+th,td{padding:6px 10px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+th{cursor:pointer;color:var(--muted);user-select:none}
+th[aria-sort]{color:var(--accent)}
+td.tags{white-space:normal;color:var(--muted);min-width:200px}
+tbody tr:hover{background:var(--chip)}
+.dots{letter-spacing:2px;color:var(--accent)}
+.dots i{font-style:normal;opacity:.25}
+/* Karten */
+article{background:var(--card);border:1px solid var(--line);margin-top:28px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);scroll-margin-top:90px}
+@media(max-width:720px){article{grid-template-columns:1fr}}
+.pics{display:flex;flex-direction:column;gap:2px;background:var(--line)}
+.pics figure{margin:0;background:var(--card)}
+.pics img{display:block;width:100%;height:auto}
+figcaption{font:.75rem Arial,sans-serif;color:var(--muted);padding:4px 10px 6px}
+.body{padding:20px 22px;min-width:0}
+h2{font:800 1.6rem/1.1 'Arial Narrow',Arial,sans-serif;text-transform:uppercase;margin:0 0 4px}
+.meta{font:600 .8rem Arial,sans-serif;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font:.88rem Arial,sans-serif;margin:12px 0}
+dt{color:var(--muted)}dd{margin:0}
+.classify{background:var(--chip);padding:10px 14px;margin:14px 0;font-size:.93rem}
+.classify h4{margin:0 0 6px;font:700 .75rem Arial,sans-serif;text-transform:uppercase;letter-spacing:.07em;color:var(--accent)}
+.classify p{margin:4px 0}
+.tag{display:inline-block;font:.75rem Arial,sans-serif;border:1px solid var(--line);background:var(--card);padding:1px 8px;border-radius:99px;margin:2px 4px 2px 0}
+.links{display:flex;flex-wrap:wrap;gap:8px 16px;font:600 .88rem Arial,sans-serif;margin-top:12px}
+.empty{margin-top:28px;color:var(--muted)}
+footer{margin-top:40px;font-size:.88rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>SPIEL Essen <span>2026</span><br>Neuheiten-Bericht</h1>
+<p class="lead">22 Spiele, die in den Vorschauen von Meeple Mountain, Board Game Review, Wargamer, Gus &amp; Co und in den BGG-Listen immer wieder auftauchen. Stand: 23.10.2026, die Messe läuft vom 22. bis 25. Oktober.</p>
+<div class="note"><strong>So ist der Bericht entstanden:</strong> Mechaniken, Spielerzahl und Dauer stammen von den BGG-Spielseiten, Halle und Stand aus der BGG-GeekPreview zur SPIEL (Angaben der Verlage, bitte vor Ort auf dem Hallenplan gegenprüfen). Die Beschreibungen kommen aus den genannten Vorschauen. Die Komplexität (1 bis 5) und die Vergleichsspiele sind meine eigene Einschätzung auf Basis dieser Angaben. Die Spiele sind größtenteils noch nicht gespielt worden, nimm sie als Orientierung. Wertungen und BGG-Ranglistenplätze konnte ich nicht auslesen, die meisten Spiele sind noch zu neu. Alle Bilder sind unverändert von Verlagen, Magazinen und BGG verlinkt, nichts ist selbst erstellt.</div>
+
+<div class="bar" id="bar">
+<div class="row">
+<label>Sortieren nach
+<select id="sort">
+<option value="rec">Empfehlung (Reihenfolge im Bericht)</option>
+<option value="name">Name A–Z</option>
+<option value="cx-asc">Komplexität: leicht zuerst</option>
+<option value="cx-desc">Komplexität: schwer zuerst</option>
+<option value="time-asc">Dauer: kurz zuerst</option>
+<option value="time-desc">Dauer: lang zuerst</option>
+<option value="pmax-desc">Meiste Spielende zuerst</option>
+<option value="hall">Halle und Stand</option>
+</select></label>
+<label>Halle
+<select id="hall"><option value="0">alle</option></select></label>
+<label>Spielende
+<select id="players"><option value="0">egal</option><option value="1">1 (solo)</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></label>
+<label>Dauer bis
+<select id="maxtime"><option value="0">egal</option><option value="30">30 Min.</option><option value="60">60 Min.</option><option value="90">90 Min.</option><option value="120">120 Min.</option></select></label>
+<label><input type="search" id="q" placeholder="Suche (Name, Mechanik …)" aria-label="Suche"></label>
+</div>
+<div class="row" style="margin-top:8px">
+<span style="color:var(--muted)">Komplexität</span>
+<div class="chips" id="cxchips">
+<button class="chip" type="button" data-cx="easy" aria-pressed="false">Leicht (1–2)</button>
+<button class="chip" type="button" data-cx="mid" aria-pressed="false">Mittel (3)</button>
+<button class="chip" type="button" data-cx="hard" aria-pressed="false">Schwer (4–5)</button>
+</div>
+<span class="count" id="count" role="status"></span>
+</div>
+</div>
+
+<div class="tablewrap"><table id="tbl"><thead><tr>
+<th data-s="name">Spiel</th><th data-s="cx">Komplexität</th><th data-s="pmin">Spielende</th><th data-s="time">Dauer</th><th data-s="hall">Halle / Stand</th><th>Mechaniken</th>
+</tr></thead><tbody></tbody></table></div>
+
+<div id="list"></div>
+<p class="empty" id="empty" hidden>Kein Spiel passt zu diesen Filtern. Lockere einen Filter oder leere die Suche.</p>
+
+<footer>
+<p>Quellen: <a href="https://www.meeplemountain.com/articles/most-anticipated-games-of-essen-spiel/" target="_blank" rel="noopener">Meeple Mountain</a> · <a href="https://boardgamereview.co.uk/features/top-10-games-im-excited-for-at-spiel-essen-2026/" target="_blank" rel="noopener">Board Game Review</a> · <a href="https://www.wargamer.com/board-games/essen-spiel-wishlist" target="_blank" rel="noopener">Wargamer</a> · <a href="https://gusandco.net/2026/10/11/spiel-essen-2026-10-jeux-a-essayer/" target="_blank" rel="noopener">Gus &amp; Co</a> · <a href="https://boardgamegeek.com/geeklist/383099/essen-2026" target="_blank" rel="noopener">BGG Geeklist Essen 2026</a> · <a href="https://boardgamegeek.com/geekpreview/93/spiel-essen-2026" target="_blank" rel="noopener">BGG Previews</a></p>
+<p>Bildrechte liegen bei den jeweiligen Verlagen, Magazinen und BGG-Nutzern. Die Bilder werden von dort geladen, der Bericht braucht dafür Internet.</p>
+</footer>
+</div>
+
+<script>
+const BGG = (a,b,pic,cap)=>({src:`https://cf.geekdo-images.com/${a}__large/img/${b}/fit-in/1024x1024/filters:no_upscale():strip_icc()/${pic}`,cap:cap+' (BGG)'});
+const IMG = (src,cap)=>({src,cap});
+const SEARCH = q=>`https://boardgamegeek.com/geeksearch.php?action=search&objecttype=boardgame&q=${q}`;
+
+const GAMES = [
+{id:'braided',name:'Braided Skies',pub:'Stonemaier Games',kind:'Euro, Worker Placement',cx:4,pmin:1,pmax:5,tmin:60,tmax:90,age:'14+',
+ mech:['Worker Placement','Streckenbewegung','Aufwerten/Tableau','3D-Brett'],
+ sim:['Viticulture','Wyrmspan','Everdell'],
+ text:'Du leitest eine Luftschiff-Reiseagentur im Smoking-Bones-Universum. Mit Dropships segelst du durch die Wolken, holst Touristen ab, entdeckst Wunder und sammelst Tapstones, die dein Schiff antreiben. Wer am Ende den meisten Ruhm hat, gewinnt. Das Spielbrett ist dreidimensional und wächst während der Partie, die Wolken liegen in eigenen Trays.',
+ fit:'Ein Kennerspiel für Leute, die gern Aktionen planen und ihre Spielerablage ausbauen. Der Wettbewerb läuft über Wege und Wunder, nicht über direkte Angriffe. Stonemaier-Spiele sind für gut aufbereitetes Material bekannt, hier ist es besonders aufwendig.',
+ facts:[['Autor','Dan Germain, Illustration Andrew Bosley'],['Deutsch','Feuerland (angekündigt)'],['Messe','Halle 3, Stand 3R400']],
+ extra:'Die Quellen nennen unterschiedliche Starttermine (Direktverkauf ab 14.10., Handel im November).',
+ imgs:[BGG('z8hyECqj2BhL77kfAM2JzA','w4TYGEM0ftSU5Uh89NdfwFp1JCg=','pic9824952.jpg','Spielende mit 5 Personen'),IMG('https://stonemaiergames.com/wp-content/uploads/2026/09/Braided-Skies-Game-Play-1-1024x768.jpeg','Spielfoto (Stonemaier Games)'),IMG('https://stonemaiergames.com/wp-content/uploads/2026/09/Braided-Skies-Game-Play-5-1024x768.jpeg','Spielfoto (Stonemaier Games)'),IMG('https://stonemaiergames.com/wp-content/uploads/2026/09/Braided-Skies-Player-Area-9-1024x768.jpeg','Spielerbereich (Stonemaier Games)'),BGG('LlivS4Xc9nMphrmOTmDH9g','SaaR7dtSyMzCHAOFy_gY3IABDMw=','pic9827652.jpg','Spielermatte neben dem Brett'),BGG('7CTum0W_kuCZtu9Kwoqe_g','f5LbIIFM3Ll0VHy7TzgxVclhYC0=','pic9824956.jpg','Topografische Karte mit Sofortboni'),IMG('https://stonemaiergames.com/wp-content/uploads/2026/08/3d-smokingbones-806x1024.png','Schachtel (Stonemaier Games)')],
+ links:[['Verlagsseite mit Fotos','https://stonemaiergames.com/games/braided-skies/'],['Regeln','https://stonemaiergames.com/games/braided-skies/rules-faq/'],['Wargamer','https://www.wargamer.com/braided-skies/board-game-announced'],['BGG-Seite','https://boardgamegeek.com/boardgame/479457/braided-skies']]},
+
+{id:'kcd',name:'Kingdom Come: Deliverance – The Board Game',pub:'CGE',kind:'Deckbuilding-Euro mit Abenteuer',cx:4,pmin:1,pmax:4,tmin:120,tmax:320,age:'14+',
+ mech:['Deckbau','Handmanagement','Mehrfach nutzbare Karten','Offenes Draften','Bewegung im Gebiet','Aufträge'],
+ sim:['Western Legends','Dune: Imperium','Return to Dark Tower'],
+ text:'Die Umsetzung des Videospiels von Warhorse Studios. Du startest als armer Bauer im Böhmen von 1403 und entscheidest selbst, ob du trainierst, den Leuten hilfst, kämpfst oder dich durchredest. Jede Stadt bietet drei Storylines, die sich mischen lassen. Fähigkeiten baust du über Erfahrung und Skill-Karten auf, die in kartenbasierten Proben zählen. Gespielt wird über fünf Spieltage.',
+ fit:'Ein großes Projekt für Abende, nicht für zwischendurch. Es ist ein Euro mit Abenteuer-Sandbox, ihr erzählt eure eigene Geschichte, aber ohne direkten Kampf gegeneinander. Wenn du das Videospiel magst oder lange Kampagnen-Abende suchst, passt es. Für kurze Partien ist es zu groß.',
+ facts:[['Autoren','Tomáš Holek und Vlaada Chvátil (erstmals zusammen)'],['Preis','149,99 € (CGE-Shop), 199,99 $ UVP'],['Material','über 500 Karten, 184 Plättchen, 164 Spielfiguren']],
+ extra:'Die Angaben zur Dauer schwanken stark: BGG nennt 120–320 Minuten, ICv2 etwa 90 Minuten pro Spieler.',
+ imgs:[IMG('https://shop.czechgames.com/cdn/shop/files/component_renders_KC_prototype_01.png?v=1782731630&width=1200','Rendering der Komponenten (CGE)'),IMG('https://shop.czechgames.com/cdn/shop/files/component_renders_KC_prototype_04.png?v=1782731454&width=1200','Rendering Brett und Marker (CGE)'),IMG('https://shop.czechgames.com/cdn/shop/files/component_renders_KC_prototype_07.png?v=1782731454&width=1200','Rendering Karten (CGE)'),BGG('RfCFpaAZCZHzV5yN7ugw8g','VYk0qX4PoVKhEiuTcGQgNCfN49U=','pic9853977.png','Start-Skill-Karten')],
+ links:[['Vorstellung','https://www.hras.cz/en/nase-novinky/kingdom-come-deliverance-the-board-game/'],['Wargamer','https://www.wargamer.com/kingdom-come-deliverance-the-board-game/release'],['ICv2','https://icv2.com/articles/news/view/62760/cge-brings-kingdom-come-deliverance-tabletop'],['BGG-Seite','https://boardgamegeek.com/boardgame/473897/kingdom-come-deliverance-the-board-game']]},
+
+{id:'drillers',name:'Drillers',pub:'Czech Games Edition',kind:'Deckbuilder, mittleres Gewicht',cx:3,pmin:1,pmax:4,tmin:30,tmax:120,age:'12+',
+ mech:['Deckbau','Gebietsmehrheiten','Handmanagement','Mehrfach nutzbare Karten','Offenes Draften','Verzögerter Kauf'],
+ sim:['Clank!','Dune: Imperium','Deep Rock Galactic (Thema)'],
+ text:'Mit Mechs gräbst du in einer verlassenen Mine nach Erzen. Du wechselst zwischen Tauchgang (Ressourcen und Plättchen holen) und Auftauchen (verkaufen und bessere Aktionskarten kaufen). Je tiefer du gräbst, desto wertvoller das Erz, aber Treibstoff wird knapp und Schaden häuft sich. Drohnen automatisieren die Logistik. Punkte gibt es vor allem fürs Rennen um Barriere- und Korridorplättchen sowie öffentliche Meilensteine.',
+ fit:'Ein Deckbauer mit klarem Rhythmus (runter, hoch, ausbauen), der sich gut erklären lässt. Die Interaktion liegt im Rennen um Plättchen und Meilensteine. Wargamer vergibt 9/10, kritisiert aber die Materialqualität. Eine gute Wahl, wenn Dune: Imperium dir zu lang oder zu hart ist.',
+ facts:[['Autoren','Adam Španěl, Roman Bednář'],['Dauer','BGG 30–120 Min.; Meeple Mountain ca. 90 Min. zu viert']],
+ extra:'',
+ imgs:[IMG('https://www.wargamer.com/wp-content/sites/wargamer/2026/07/drillers-board-game-review-1-550x309.jpg','Drillers in einer Partie (Wargamer)'),BGG('I0wAZptT1DkBEDjO5a5tmA','fZKxePN6JJxOPrrpFnnwiOF-HDY=','pic9450779.jpg','Drillers auf der GAMA 2026'),IMG('https://www.wargamer.com/wp-content/sites/wargamer/2026/07/drillers-board-game-review-550x309.jpg','Die Mech-Miniaturen (Wargamer)'),IMG('https://www.wargamer.com/wp-content/sites/wargamer/2026/07/drillers-board-game-review-3-550x309.jpg','Shop-Karten (Wargamer)'),IMG('https://i0.wp.com/gusandco.net/wp-content/uploads/2026/07/Drillers-%E2%80%93-Czech-Games-Edition.png?resize=1013%2C772&ssl=1','Schachtel (Gus & Co)')],
+ links:[['Wargamer-Test','https://www.wargamer.com/drillers/board-game-review'],['Meeple Mountain','https://www.meeplemountain.com/reviews/drillers/'],['BGG-Seite','https://boardgamegeek.com/boardgame/465669/drillers']]},
+
+{id:'alice',name:'Queen Alice',pub:'Combo Games',kind:'Engine-Building-Euro',cx:4,pmin:1,pmax:4,tmin:30,tmax:120,age:'14+',
+ mech:['Deckbau','Handmanagement','Mehrfach nutzbare Karten','Streckenbewegung','Endwertungs-Boni','Schachfiguren-Zug'],
+ sim:['Ark Nova','Dune: Imperium','Viscounts of the West Kingdom'],
+ text:'Schach trifft Alice im Spiegelland. Du spielst Karten, um passende Schachfiguren auf dem zentralen Brett zu ziehen. Statt zu schlagen, löst du die Aktion des Zielfelds aus. Jede Reihe steht für eine Ressource, jede Spalte für ein Minispiel. Wer Alice am Ende am meisten überzeugt, wird Königin. Die Autoren nennen das „Chess-Building“.',
+ fit:'Ein Kopfspiel für Optimierer. Schach-Kenntnisse brauchst du nicht, aber das Gefühl für Züge und Felder hilft. Das Brett als Aktionsraster ist neu, vom Anspruch her liegt es bei Engine-Buildern wie Ark Nova. Die Vergleichsspiele sind meine grobe Einschätzung, weil es kaum direkte Vorbilder gibt.',
+ facts:[['Autoren','Héctor Carrión, David Heras Pino; Illustration Amelia Sales'],['Preis','Gamefound: 56 $ (Basis), 68 $ (Holz-Deluxe)']],
+ extra:'',
+ imgs:[BGG('kt289Opv1rhW9AQQxOCYdg','8Q4hsDdwX_v-a4SjrkHJR2yfP8I=','pic9428833.jpg','Komplettes Setup'),BGG('N3qV7QwmLqhf2R2RbtYvbg','ParqVsKtxmDeZe7cgIu_C8LOYxM=','pic9428837.jpg','Holzfiguren'),BGG('BWZBGGN5in-ltsG3BtPDbg','S1KH7CT8-r7C5Nzo4EL9WZeH93c=','pic9428834.jpg','Kartenvorderseiten'),IMG('https://i0.wp.com/gusandco.net/wp-content/uploads/2026/10/Queen-Alice.webp?resize=1024%2C732&ssl=1','Produktbild (Gus & Co)'),IMG('https://www.wargamer.com/wp-content/sites/wargamer/2026/03/Quen-Alice-Thumbnail-550x309.jpg','Schachtel (Wargamer)')],
+ links:[['Wargamer','https://www.wargamer.com/board-games/queen-alice'],['Regelvideo (YouTube)','https://www.youtube.com/watch?v=uxzEPuqtG50'],['FroGames','https://frogames.it/en/products/queen-alice-upgrade-pack'],['BGG-Seite','https://boardgamegeek.com/boardgame/456236/queen-alice']]},
+
+{id:'timespan',name:'Timespan',pub:'Alion Games',kind:'Zivilisations-Tableau, friedlich',cx:3,pmin:1,pmax:5,tmin:90,tmax:90,age:'12+',
+ mech:['Worker Placement','Technologiebäume','Variable Spielerfähigkeiten','Draften','Gleichzeitige Aktionen'],
+ sim:['Nations','Through the Ages','7 Wonders'],
+ text:'Von der Steinzeit bis ins Weltraumzeitalter in etwa 90 Minuten, ganz ohne Krieg. Jede Zivilisation hat ein Zeitstrahl-Tableau für bis zu vier Karten. Kommt eine neue dazu, rutscht die älteste ins Erbe. Es gibt sechs asymmetrische Zivilisationen und rund 175 Karten mit Persönlichkeiten, Gebäuden, Technologien und Wundern. Die Aktionsphase läuft weitgehend gleichzeitig, Interaktion entsteht vor allem beim Draften.',
+ fit:'Ein Zivilisationsspiel in Kurzform: viel Engine und Kombinieren, wenig Gegeneinander. Meeple Mountain beschreibt es als im Kern solitäres Spiel mit gemeinsamem Draft und empfiehlt es eher für den Solomodus. Gut, wenn du Through the Ages magst, aber nicht drei Stunden dafür hast.',
+ facts:[['Autoren','Kristian Amundsen Østby, Kenneth Minde'],['Ablauf','5 Runden, Erkundung und Aktion']],
+ extra:'',
+ imgs:[BGG('cYkpGBHNuR15yoXbArYzKw','ts-MJ20hiezQyLVH3KCuI44GwcY=','pic9688226.jpg','Illustration zum Spielablauf'),IMG('https://i0.wp.com/gusandco.net/wp-content/uploads/2026/10/timespan-7090069290026.jpg?resize=800%2C800&ssl=1','Schachtel (Gus & Co)')],
+ links:[['Meeple Mountain','https://www.meeplemountain.com/reviews/timespan/'],['Vertrieb','https://www.tlamagames.com/en/board-games/timespan/'],['BGG-Seite','https://boardgamegeek.com/boardgame/462479/timespan']]},
+
+{id:'gaudi',name:'Gaudí',pub:'Devir',kind:'Legespiel, Balance-Wertung',cx:2,pmin:1,pmax:4,tmin:60,tmax:100,age:'10+',
+ mech:['Plättchen legen','Draften','Balance-Wertung (2 schwächste Bereiche)'],
+ sim:['Azul','Sagrada','Cascadia'],
+ text:'Du folgst dem Leben des Architekten Antoni Gaudí und punktest in Natur, Katalonien und Religion. Nur die zwei schwächsten Bereiche zählen am Ende, also gewinnt, wer ausgewogen spielt. In drei Runden nimmst du Karten und Trencadís-Scherben von einem zentralen Kronleuchter und baust sie auf deinem Tableau zusammen.',
+ fit:'Ein zugängliches Legespiel für Familien und Vielspieler, die etwas Ruhiges mit kleinen Entscheidungen suchen. Die Wertung (nur die zwei schwächsten Bereiche) zwingt zum Ausgleichen und macht es mehr als ein reines Puzzle.',
+ facts:[['Autor','Dani Garcia, Illustration Edu Valls']],
+ extra:'',
+ imgs:[BGG('C7g0OHx_eRhg-1hxNgSTMg','9HRRlyqXYtazRmZRNcpzq_x0TFs=','pic9782043.jpg','Erste Partie der finalen Version'),BGG('hv4bRdmBC5C3Trj8T-CMkQ','yNXeQYY9Jm7XRzugEYRfyXaVBxo=','pic9202574.jpg','Am Stand auf der SPIEL ’25'),IMG('https://i0.wp.com/gusandco.net/wp-content/uploads/2026/10/gaudi-3701551707390.jpg?resize=546%2C658&ssl=1','Schachtel (Gus & Co)'),IMG('https://www.wargamer.com/wp-content/sites/wargamer/2026/09/board-games-essen-spiel-gaudi-550x309.jpg','Bild aus dem Wargamer-Artikel')],
+ links:[['Gus & Co','https://gusandco.net/2026/10/11/spiel-essen-2026-10-jeux-a-essayer/'],['BGG-Seite','https://boardgamegeek.com/boardgame/457557/gaudi']]},
+
+{id:'greenwood',name:'Greenwood',pub:'Feuerland Spiele',kind:'Fantasy-Euro',cx:3,pmin:1,pmax:4,tmin:40,tmax:160,age:'14+',
+ mech:['Variable Spielerfähigkeiten','Gefährten nutzen (auch fremde)','Clan-Fähigkeiten (Expertenvariante)'],
+ sim:['Everdell','Lost Ruins of Arnak','Wyrmspan'],
+ text:'Du bist ein Waldgeist und befreist mythische Wesen, die Druiden gefangen halten. Über drei Nächte sammelst du Gefährten. Du darfst auch die Gefährten anderer Spielender einsetzen. In der Expertenvariante geben Clans Sonderfähigkeiten, die auch die Gegner nutzen können.',
+ fit:'Ein Euro im Fantasy-Wald mit einer Besonderheit: Die Gefährten der anderen sind für alle nutzbar, das macht den Tisch interaktiver als bei vielen Aufbauspielen. Die Vergleichsspiele sind meine grobe Einschätzung, BGG nennt dazu wenig Mechaniken.',
+ facts:[['Autoren','Christos Giannakoulas, Manolis Zachariadis']],
+ extra:'',
+ imgs:[BGG('0BoGXkr4ZAPnw6N4Ue8uFw','3BKfCcferhFXDArenrqoJc7-hE4=','pic9729340.jpg','Gesamter Tisch bei 2 Spielenden'),IMG('https://i0.wp.com/gusandco.net/wp-content/uploads/2026/10/greenwood-3760426550394.jpg?resize=921%2C1024&ssl=1','Schachtel (Gus & Co)'),IMG('https://www.wargamer.com/wp-content/sites/wargamer/2026/09/greenwood-550x309.jpg','Bild aus dem Wargamer-Artikel')],
+ links:[['Gus & Co','https://gusandco.net/2026/10/11/spiel-essen-2026-10-jeux-a-essayer/'],['Wargamer-Wunschliste','https://www.wargamer.com/board-games/essen-spiel-wishlist'],['BGG-Seite','https://boardgamegeek.com/boardgame/469383/greenwood']]},
+
+{id:'linne',name:'Carl von Linné',pub:'Pink Troubadour',kind:'Aktions-Euro, Pioneers of Science',cx:3,pmin:1,pmax:4,tmin:60,tmax:120,age:'12+',
+ mech:['Aktionspunkte','Aktionen reaktivieren','Bewegung im Gebiet','Einkommen','Endwertungs-Boni','Streckenbewegung'],
+ sim:['Galileo Galilei (selbe Reihe)','Darwin’s Journey','Brass (Einkommen-Gefühl)'],
+ text:'Nachfolger von Galileo Galilei in derselben Reihe. Du setzt Aktionen auf ein Linsensystem (Brille, Lupe, Mikroskop), das sie ein-, zwei- oder dreimal ausführt. Dazu kommen Expeditionen, Proben sammeln, ein botanischer Garten und Publikationen.',
+ fit:'Ein mittelschwerer Euro mit einem klaren Kernmechanismus: Je „stärker“ die Linse, desto öfter wird die Aktion ausgeführt. Wer Galileo Galilei kennt, findet sich sofort zurecht. Das Wissenschafts-Thema ist hier mehr als aufgesetzt.',
+ facts:[['Autor','Michal Peichl'],['Messe','Halle 4, Stand 4G515']],
+ extra:'',
+ imgs:[BGG('n_RYhqECGpAym8xR5fsDzA','zrN8mvupNUvg9fM7Yf5TczTOygc=','pic9878643.jpg','Am Neuheitenstand der SPIEL ’26'),IMG('https://boardgamereview.co.uk/wp-content/uploads/2026/09/Carl-von-Linne.png','Board Game Review'),IMG('https://i0.wp.com/gusandco.net/wp-content/uploads/2026/10/carl-von-linne-2100001422691.jpg?resize=1024%2C1024&ssl=1','Schachtel (Gus & Co)')],
+ links:[['Board Game Review','https://boardgamereview.co.uk/features/top-10-games-im-excited-for-at-spiel-essen-2026/'],['BGG-Seite','https://boardgamegeek.com/boardgame/462012/carl-von-linne']]},
+
+{id:'sixty',name:'-60° (Sixty Below)',pub:'Nanox Games',kind:'Kartenmanagement und Erkundung',cx:4,pmin:1,pmax:4,tmin:120,tmax:180,age:'12+',
+ mech:['Deckbau','Handmanagement','Push Your Luck','Worker Placement','Endwertungs-Boni','Solo-Modus'],
+ sim:['Maracaibo','Oh my Goods!','Great Western Trail'],
+ text:'Alternative Geschichte, 1971: Forschungsteams bauen ein Netz von Stationen in der Antarktis, erkunden das Eis und rennen zum Einschlagort eines Meteoriten. Es geht um Kartenmanagement, wissenschaftliche Projekte und Risiko.',
+ fit:'Ein langes Kartenmanagement-Spiel vom Autor von Great Western Trail und Maracaibo. Das Glücksrisiko (Push Your Luck) kommt dazu. Das passt zu dir, wenn du Pfister-Spiele magst und Zeit für zwei bis drei Stunden hast.',
+ facts:[['Autoren','Alexander Pfister, Peter Prinz; Illustration Martin Mottet']],
+ extra:'',
+ imgs:[IMG('https://i0.wp.com/gusandco.net/wp-content/uploads/2026/10/sixty-below-2100001395643.png?resize=1024%2C1024&ssl=1','Schachtel (Gus & Co)'),BGG('-_ysFT_PqmIkqYwHAFbwhw','jHcDNz.ZZ','pic9684566.png','')].slice(0,1),
+ links:[['Gus & Co','https://gusandco.net/2026/10/11/spiel-essen-2026-10-jeux-a-essayer/'],['BGG-Seite','https://boardgamegeek.com/boardgame/474125/sixty-below']]},
+
+{id:'kano',name:'Kano',pub:'Matagot',kind:'Legespiel mit Mustern und Sets',cx:2,pmin:1,pmax:4,tmin:30,tmax:40,age:'12+',
+ mech:['Musterbau','Set-Sammeln','Plättchen legen','Aufträge'],
+ sim:['Azul','Calico','Cascadia'],
+ text:'Du gestaltest traditionelle japanische Handrollen. Das Spiel verbindet Musterbau, Set-Sammeln und Plättchenlegen und fällt durch Plättchen und Farbtöpfe auf.',
+ fit:'Ein kurzes, hübsches Puzzle-Spiel. 30 bis 40 Minuten, wenig Regeln. Es ist ein Kandidat als Einstieg oder als Absacker, wenn ihr Spiele wie Azul oder Calico mögt.',
+ facts:[['Messe','Halle 3, Stand 3D200']],
+ extra:'',
+ imgs:[BGG('CTQskjzZJkiOI-tZ0uujpA','GbwxSCmRrW6e0mH_U-y-vbDWPXo=','pic9734044.jpg','Während des Spiels'),IMG('https://boardgamereview.co.uk/wp-content/uploads/2026/09/Kano.png','Board Game Review')],
+ links:[['Board Game Review','https://boardgamereview.co.uk/features/top-10-games-im-excited-for-at-spiel-essen-2026/'],['BGG-Seite','https://boardgamegeek.com/boardgame/470343/kano']]},
+
+{id:'medico',name:'Medico',pub:'Pegasus Spiele',kind:'Lieferspiel mit gleichzeitiger Aktionswahl',cx:3,pmin:2,pmax:4,tmin:60,tmax:90,age:'12+',
+ mech:['Pick-up and Deliver','Gleichzeitige Aktionswahl'],
+ sim:['Concordia','Die Burgen von Burgund (selber Autor)'],
+ text:'Ein neues Spiel von Stefan Feld: Du reist als Mediziner von Stadt zu Stadt und sammelst Wissen. BGG nennt Pick-up-and-Deliver und gleichzeitige Aktionswahl, das Setting ist mittelalterlich.',
+ fit:'Ein Feld-Spiel für Leute, die kombinieren und Wege planen. Die gleichzeitige Aktionswahl macht es flotter als viele Verwandte. Details zu den Regeln liegen noch nicht ausführlich vor, die Einordnung stützt sich auf die BGG-Angaben.',
+ facts:[['Autor','Stefan Feld'],['Messe','Halle 3, Stand 3K120 / 3L110 / 3M120']],
+ extra:'',
+ imgs:[BGG('2OVj_9tgvrwJlG0lkHwhHg','nI213uDei5WT_0QUqryVpfsuERw=','pic9686109.jpg','3D-Artwork'),IMG('https://boardgamereview.co.uk/wp-content/uploads/2026/09/Medico.png','Board Game Review')],
+ links:[['Board Game Review','https://boardgamereview.co.uk/features/top-10-games-im-excited-for-at-spiel-essen-2026/'],['BGG-Seite','https://boardgamegeek.com/boardgame/472021/medico']]},
+
+{id:'highmoon',name:'High Moon',pub:'Combo Games',kind:'Legespiel im Weird West',cx:2,pmin:2,pmax:4,tmin:40,tmax:60,age:'10+',
+ mech:['Netzwerk- und Streckenbau','Plättchen legen'],
+ sim:['Carcassonne','Ticket to Ride'],
+ text:'Ein Western-Legespiel mit Horror-Einschlag. Meeple Mountain nennt einfache Regeln und harte Entscheidungen. Du legst Plättchen und baust Verbindungen.',
+ fit:'Ein Spiel für Zwischendurch mit Biss: leicht erklärt, aber mit Tüftelei. Passend, wenn ihr Carcassonne oder Ticket to Ride mögt und etwas mit mehr Entscheidungsdruck wollt.',
+ facts:[['Autor','Antonio Guillamó „Guilla“']],
+ extra:'',
+ imgs:[BGG('BfcvGm2pdjAC76BJpIM19Q','txu6UC0XXkGTaPdW2o8o4i6R2mQ=','pic9323308.jpg','Partie'),BGG('8PNlyvDuVkX6T05ZGdbWIQ','RzhoRd9mMyO09XU9coDtiZMPIMA=','pic9323311.jpg','Persönlicher Bereich')],
+ links:[['Meeple Mountain','https://www.meeplemountain.com/articles/most-anticipated-games-of-essen-spiel/'],['BGG-Seite','https://boardgamegeek.com/boardgame/456332/high-moon']]},
+
+{id:'carpet',name:'Carpet Racers',pub:'Pink Troubadour',kind:'Chaotisches Rennspiel',cx:1,pmin:3,pmax:5,tmin:25,tmax:45,age:'10+',
+ mech:['Rennen','Bluffen & Deduktion','Bewegungspunkte','Mehrere Figuren bewegen','Variabler Aufbau'],
+ sim:['Flamme Rouge','Camel Up','Cockroach Poker (Bluff-Gefühl)'],
+ text:'Ein chaotisches Rennspiel: Du fährst Teppiche, weißt aber nicht, welcher deiner ist. Es geht um Deduktion und Bluff, während alle am Rennen drehen.',
+ fit:'Ein Partyspiel für 3 bis 5 Leute und die Familie. Ihr lacht viel, plant wenig. Als Abschluss eines Spieleabends eine gute Wahl.',
+ facts:[['Autor','Tomáš Holek'],['Messe','Halle 4, Stand 4G515']],
+ extra:'',
+ imgs:[BGG('I8jDh2K71HQKAblBWlY9LQ','QXkMJpx6AYB4yWPZPgSCUCZ1fOc=','pic9880281.jpg','Auf der SPIEL ’26'),BGG('0PwtWhurgylWu8UTI_UeCw','8PY3lLY_EzQgwqgL3W0lIsLlzXA=','pic9684967.jpg','Schachtel'),IMG('https://boardgamereview.co.uk/wp-content/uploads/2026/09/Carpet-Racers.png','Board Game Review')],
+ links:[['Board Game Review','https://boardgamereview.co.uk/features/top-10-games-im-excited-for-at-spiel-essen-2026/'],['BGG-Seite','https://boardgamegeek.com/boardgame/474289/carpet-racers']]},
+
+{id:'excursions',name:'Excursions',pub:'Kinson Key Games',kind:'Wirtschafts-Rennspiel im Weltraum',cx:2,pmin:1,pmax:6,tmin:60,tmax:90,age:'10+',
+ mech:['Handmanagement','Einkommen','Markt','Rennen','Follow (Aktionen anderer nutzen)','Endwertungs-Boni'],
+ sim:['Galactic Cruise (selbes Universum)','Space Base'],
+ text:'Ein Spiel im Universum von Galactic Cruise, aber zugänglicher. Bis zu sechs Personen spielen gleichzeitig. Die Illustrationen stammen von Ian O’Toole. Laut Board Game Review ist eine Kickstarter-Kampagne geplant.',
+ fit:'Ein leichterer Einstieg in das Galactic-Cruise-Universum mit Markt und Einkommen. Das Spiel passt für größere Runden, weil bis zu sechs Personen gleichzeitig spielen.',
+ facts:[['Messe','Halle 4, Stand 4D320']],
+ extra:'BGG führt das Spiel mit Erscheinungsjahr 2027.',
+ imgs:[BGG('1_iqwOIhDpZQdFqci_6SRQ','wsLUM5LOJaOK0hF2hYghFI9pETo=','pic9527854.jpg','Schachtel'),IMG('https://boardgamereview.co.uk/wp-content/uploads/2026/09/Excursions.png','Board Game Review')],
+ links:[['Board Game Review','https://boardgamereview.co.uk/features/top-10-games-im-excited-for-at-spiel-essen-2026/'],['BGG-Seite','https://boardgamegeek.com/boardgame/468800/excursions']]},
+
+{id:'fadenfroh',name:'Fadenfroh',pub:'Pandasaurus Games',kind:'Gemütliches Legespiel',cx:2,pmin:1,pmax:4,tmin:30,tmax:30,age:'8+',
+ mech:['Plättchen legen','Ebenen/Layering','Offenes Draften','Set-Sammeln','Solo-Modus'],
+ sim:['Cascadia','Harmonies','Calico'],
+ text:'Ein gemütliches Spiel über Nähen und Garn, 30 Minuten. Du draftest Plättchen und legst sie in Schichten auf dein Tableau.',
+ fit:'Ein kurzes Wohlfühl-Spiel vom Autor von Great Western Trail (Alexander Pfister) mit Jordy Adan. Wer Cascadia oder Harmonies mag, bekommt hier etwas Ähnliches.',
+ facts:[['Autoren','Alexander Pfister, Jordy Adan'],['Messe','Halle 2, Stand 2E330']],
+ extra:'',
+ imgs:[BGG('uzyEgV7QMGkwQb8lFx_8Ug','xuyV_T_ZJ-FmhJu4XskOgL11gj8=','pic9840045.jpg','Spielertableau am Spielende'),IMG('https://boardgamereview.co.uk/wp-content/uploads/2026/09/Fradenfroh.png','Board Game Review')],
+ links:[['Board Game Review','https://boardgamereview.co.uk/features/top-10-games-im-excited-for-at-spiel-essen-2026/'],['BGG-Seite','https://boardgamegeek.com/boardgame/475685/fadenfroh']]},
+
+{id:'oilrock',name:'Oil Rock',pub:'Cranio Creations',kind:'Klassischer Euro mit Rondell',cx:4,pmin:2,pmax:4,tmin:90,tmax:90,age:'13+',
+ mech:['Worker Placement','Rondell','Hexfeld-Plan','Variable Spielerfähigkeiten','Variabler Aufbau'],
+ sim:['Barrage','Tzolk’in','Lorenzo il Magnifico'],
+ text:'Ein Strategiespiel eines Debütanten, Marco Piola Caselli, mit Entwicklungsarbeit von Simone Luciani. Das Thema ist Industrie, es gibt ein Rondell und Arbeitereinsatz auf einem Hexfeld-Plan.',
+ fit:'Ein Kopf-Euro für 2 bis 4 Spielende, 90 Minuten. Der Name Luciani steht für anspruchsvolle Mechanik-Euros. Das passt, wenn du Barrage oder Tzolk’in magst.',
+ facts:[['Autor','Marco Piola Caselli'],['Messe','Halle 3, Stand 3T400 (Cranio Creations)']],
+ extra:'',
+ imgs:[BGG('uQ2UxY5o4__Rq-hSrObVqA','cW6fq6pMe_BL2uMaJEgzOmzQBig=','pic9646782.jpg','Spielplan'),BGG('mxG7gRi02ya2a67Y3X3FkQ','XULRGIVeOEW1CjoHIxWLmDySfRE=','pic9652484.jpg','Material')],
+ links:[['Meeple Mountain','https://www.meeplemountain.com/articles/most-anticipated-games-of-essen-spiel/'],['BGG-Seite','https://boardgamegeek.com/boardgame/470814/oil-rock']]},
+
+{id:'wireless',name:'Wireless',pub:'Spielefaible',kind:'Netzwerk-Euro, Wirtschaft',cx:3,pmin:1,pmax:4,tmin:30,tmax:120,age:'14+',
+ mech:['Netzwerk- und Streckenbau','Aktionen reaktivieren'],
+ sim:['Brass: Birmingham','Age of Steam','Power Grid'],
+ text:'Du baust die ersten Telekommunikationsnetze der Zeit um 1900. Es geht um Netzwerke, Wirtschaft und das Reaktivieren von Aktionen.',
+ fit:'Ein Wirtschaftsspiel mit Netzaufbau, ähnlich im Geist wie Brass und Age of Steam, aber nach BGG mit schlanker Mechanik. Der Designer hat ein Tagebuch zur Entstehung veröffentlicht (laut Meeple Mountain).',
+ facts:[['Autoren','Marco Canetta, Stefania Niccolini']],
+ extra:'',
+ imgs:[BGG('HntjmS-TFR9pJssqsBWeYw','Y7cMqkBQeSdGY7ynQw6NyFjKp-o=','pic9878583.jpg','Am Neuheitenstand der SPIEL ’26')],
+ links:[['Meeple Mountain','https://www.meeplemountain.com/articles/most-anticipated-games-of-essen-spiel/'],['BGG-Seite','https://boardgamegeek.com/boardgame/474481/wireless']]},
+
+{id:'avalon',name:'Avalon: The Riven Veil',pub:'—',kind:'Fantasy mit Gebietsmehrheiten und Karten',cx:4,pmin:2,pmax:4,tmin:90,tmax:120,age:'14+',
+ mech:['Gebietsmehrheiten','Kartenduell','Handmanagement','König des Berges','Plan erweitern','Miniaturen'],
+ sim:['Blood Rage','Cyclades','Tyrants of the Underdark'],
+ text:'Ein Fantasy-Spiel mit Miniaturen, Gebietsmehrheiten und Kartenduellen, in dem Blöffen und Kämpfen zählen. Laut einem BGG-Thread erscheint die erste Auflage zur Messe nur auf Deutsch, ein englisches Sprachpaket wird separat verkauft.',
+ fit:'Ein Spiel für Gruppen, die gern kämpfen, drohen und blöffen. Die Vergleichsspiele sind eine grobe Einschätzung allein aus den BGG-Mechaniken, zum Ablauf gibt es kaum ausführliche Berichte.',
+ facts:[['Sprache','Erstauflage nur Deutsch (BGG-Thread)']],
+ extra:'Der Verlag und weitere Details sind in meinen Quellen nicht eindeutig.',
+ imgs:[BGG('F2LrPqxhxglJueQGxJugOg','VgJTQD6ZhKsHoXb9O6GQJgVfkvM=','pic8199843.jpg','Cover'),BGG('rXGLkG-3OCyERQS9zuN_dA','RicpvBs78zkDV0aL7z56m50-9Qw=','pic8505782.jpg','Schachtel')],
+ links:[['BGG Essen-Geeklist','https://boardgamegeek.com/geeklist/383099/essen-2026'],['BGG-Seite','https://boardgamegeek.com/boardgame/402276/avalon-the-riven-veil']]},
+
+{id:'entropy',name:'Entropy',pub:'—',kind:'Wirtschafts-Euro im Weltraum',cx:4,pmin:1,pmax:4,tmin:90,tmax:150,age:'14+',
+ mech:['Rondell','Set-Sammeln','Rennen','Variable Spielerfähigkeiten','Mehrfach nutzbare Karten','Solo-Modus'],
+ sim:['Gaia Project','Terraforming Mars','Nucleum'],
+ text:'Ein Strategiespiel im kosmischen Maßstab: Du baust ein Sonnensystem auf und lässt Leben entstehen. Mechanisch stehen ein Rondell und Set-Sammeln im Zentrum.',
+ fit:'Ein schweres Strategiespiel mit ehrgeizigem Thema für lange Abende. Die Vergleichsspiele sind meine grobe Einschätzung nach den BGG-Mechaniken.',
+ facts:[],
+ extra:'Zu Autor und Verlag haben meine Quellen keine klaren Angaben.',
+ imgs:[BGG('N6_JQSyPBMT4U7PYO05ZRg','Fr6ev_fd3GsOpYeIFOTTer0YFcY=','pic9357499.jpg','Schachtel'),BGG('qjbKd366kex3vNgYxv7k_Q','-YOVmnFA3qN_fGoYnGtSGlnDNDk=','pic9646561.jpg','Entropy')],
+ links:[['Meeple Mountain-Übersicht','https://www.meeplemountain.com/articles/most-anticipated-games-of-essen-spiel/'],['BGG-Seite','https://boardgamegeek.com/boardgame/462941/entropy']]},
+
+{id:'bookwomen',name:'The Book Women',pub:'—',kind:'Lieferspiel mit Würfeln',cx:3,pmin:1,pmax:4,tmin:60,tmax:120,age:'12+',
+ mech:['Pick-up and Deliver','Würfel als Arbeiter','Aufträge','Würfeln','Punkt-zu-Punkt-Bewegung'],
+ sim:['Marco Polo','Lords of Waterdeep','Everdell'],
+ text:'Du bringst Bücher über ein modulares Spielbrett zu ihren Leserinnen und Lesern und baust lokale Bibliotheken auf. Würfel dienen als Arbeiter.',
+ fit:'Ein mittelschwerer Euro mit warmem Thema. Würfel als Arbeiter und Lieferaufträge kennt man von Marco Polo und Lords of Waterdeep, das Modul-Brett sorgt für Abwechslung.',
+ facts:[],
+ extra:'BGG führt das Spiel mit Erscheinungsjahr 2027.',
+ imgs:[BGG('qGNu6iWQLVopKsaNGSC8KA','oYxQoj1LRnx2PLDkkgoXCwBHi_w=','pic9694582.jpg','Cover')],
+ links:[['Meeple Mountain-Übersicht','https://www.meeplemountain.com/articles/most-anticipated-games-of-essen-spiel/'],['BGG-Seite','https://boardgamegeek.com/boardgame/474888/the-book-women']]},
+
+{id:'orcs',name:'Orcs Up!',pub:'Cranio Creations',kind:'Geschicklichkeitsspiel',cx:1,pmin:2,pmax:5,tmin:30,tmax:30,age:'6+',
+ mech:['Stapeln & Balancieren'],
+ sim:['Rhino Hero','Junk Art','Jenga'],
+ text:'Orks klettern einen Turm hinauf, die anderen werfen Felsbrocken, um sie aufzuhalten. Ein Geschicklichkeitsspiel mit Fantasy-Thema.',
+ fit:'Ein Familien- und Partyspiel, ab 6 Jahren. Kaum Regeln, viel Action, kann auch Vielspieler-Runden auflockern.',
+ facts:[['Messe','Halle 3, Stand 3T400']],
+ extra:'',
+ imgs:[BGG('rL5POyxFnyP80goEppK_eA','kuSB45CFvGDg3Ivr3NNSYOYEfGc=','pic9605822.jpg','Turm im Bau'),BGG('IBLKYmFccjfQTHPtvxw1tw','_ca1TnHW-y0eXKf4Sg8J5Vlk-9Y=','pic9814227.jpg','Foto von Boardgame'),IMG('https://boardgamereview.co.uk/wp-content/uploads/2026/09/Orcs-Up.png','Board Game Review')],
+ links:[['Board Game Review','https://boardgamereview.co.uk/features/top-10-games-im-excited-for-at-spiel-essen-2026/'],['BGG-Seite','https://boardgamegeek.com/boardgame/458824/orcs-up']]},
+
+{id:'grizzo',name:'Grizzo',pub:'HABA',kind:'Kartenspiel, Push-your-Luck',cx:1,pmin:2,pmax:5,tmin:20,tmax:20,age:'8+',
+ mech:['Push Your Luck','Offenes Draften','Set-Sammeln'],
+ sim:['Port Royal','Sushi Go!','Skull King (Risiko-Gefühl)'],
+ text:'Ein Kartenspiel für 2 bis 5 Personen, etwa 20 Minuten. Du draftest, sammelst Sets und entscheidest, wann du aufhörst.',
+ fit:'Ein schnelles Kartenspiel für Familien und als Absacker. Wer Port Royal oder Sushi Go! mag, wird sich hier zurechtfinden.',
+ facts:[['Messe','Halle 8, Stand 8A115 / 8A300']],
+ extra:'',
+ imgs:[BGG('mAxRco6EWEfbusmmB0IrDA','ubWwNkH3Cx-QuzvZ2EePLpeMQRg=','pic9744301.png','Gameplay'),BGG('6EP5yZOjt9mXO-ploWmabA','feDIeNxF2W0eK1lf160Tx1dv_R8=','pic9550516.png','Schachtel'),IMG('https://boardgamereview.co.uk/wp-content/uploads/2026/09/Grizzo.png','Board Game Review')],
+ links:[['Board Game Review','https://boardgamereview.co.uk/features/top-10-games-im-excited-for-at-spiel-essen-2026/'],['BGG-Seite','https://boardgamegeek.com/boardgame/469489/grizzo']]}
+];
+GAMES.forEach((g,i)=>g.rec=i);
+
+// Halle und Stand laut BGG-GeekPreview (Angaben der Verlage, Stand 23.10.2026)
+const LOC={
+ braided:{booth:'3-R400'}, kcd:{booth:'3-V400 und 7-E100'}, drillers:{booth:'3-V400 und 7-E100'},
+ alice:{booth:'3-U210'}, timespan:{booth:'3-F110'}, gaudi:{booth:'3-D600'}, greenwood:{booth:'3-Q300'},
+ linne:{booth:'4-G515'}, sixty:{booth:'3-C115'}, kano:{booth:'3-F120',note:'Board Game Review nennt für Matagot 3-D200.'},
+ medico:{booth:'3-M120',note:'Pegasus hat laut Board Game Review auch 3-K120 und 3-L110.'}, highmoon:{booth:'3-U210'},
+ carpet:{booth:'4-G515'}, excursions:{booth:'4-D320'},
+ fadenfroh:{booth:'7-B111',note:'Board Game Review nennt für Pandasaurus 2-E330.'},
+ oilrock:{booth:'3-T400'}, wireless:{booth:'3-G515'}, avalon:{booth:'3-S217'}, entropy:{booth:'3-G200'},
+ bookwomen:{booth:'3-A400'}, orcs:{booth:'3-T400',note:'Stand laut Board Game Review (Cranio Creations).'},
+ grizzo:{booth:'8-A115 und 8-A300',note:'Stand laut Board Game Review (HABA).'}
+};
+GAMES.forEach(g=>{const l=LOC[g.id];g.booth=l.booth;g.locnote=l.note||'';g.hall=Math.min(...l.booth.match(/\d+(?=-)/g).map(Number));
+ g.facts=g.facts.filter(f=>f[0]!=='Messe');});
+const HALLS=[...new Set(GAMES.map(g=>g.hall))].sort((a,b)=>a-b);
+
+const $=s=>document.querySelector(s);
+const state={sort:'rec',players:0,maxtime:0,hall:0,q:'',cx:new Set(),col:null,dir:1};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const cxClass=c=>c<=2?'easy':c===3?'mid':'hard';
+const dots=c=>'<span class="dots" title="Komplexität '+c+' von 5 (meine Einschätzung)">'+'●'.repeat(c)+'<i>'+'●'.repeat(5-c)+'</i></span>';
+const range=(a,b,u)=>a===b?a+' '+u:a+'–'+b+' '+u;
+
+function view(){
+ let l=GAMES.filter(g=>{
+  if(state.players && !(g.pmin<=state.players && state.players<=g.pmax)) return false;
+  if(state.maxtime && g.tmin>state.maxtime) return false;
+  if(state.hall && g.hall!==state.hall) return false;
+  if(state.cx.size && !state.cx.has(cxClass(g.cx))) return false;
+  if(state.q){const t=(g.name+' '+g.pub+' '+g.kind+' '+g.mech.join(' ')+' '+g.sim.join(' ')).toLowerCase();if(!t.includes(state.q)) return false;}
+  return true;});
+ const s=state.sort;
+ const by={rec:(a,b)=>a.rec-b.rec,name:(a,b)=>a.name.localeCompare(b.name,'de'),
+  'cx-asc':(a,b)=>a.cx-b.cx||a.rec-b.rec,'cx-desc':(a,b)=>b.cx-a.cx||a.rec-b.rec,
+  'time-asc':(a,b)=>a.tmax-b.tmax||a.rec-b.rec,'time-desc':(a,b)=>b.tmax-a.tmax||a.rec-b.rec,
+  'pmax-desc':(a,b)=>b.pmax-a.pmax||a.rec-b.rec,
+  hall:(a,b)=>a.hall-b.hall||a.booth.localeCompare(b.booth,'de',{numeric:true})||a.rec-b.rec}[s];
+ l.sort(by);
+ return l;
+}
+
+function render(){
+ const l=view();
+ $('#count').textContent=l.length+' von '+GAMES.length+' Spielen';
+ $('#empty').hidden=l.length>0;
+ $('#tbl tbody').innerHTML=l.map(g=>`<tr><td><a href="#${g.id}">${esc(g.name)}</a></td><td>${dots(g.cx)}</td><td>${range(g.pmin,g.pmax,'')}</td><td>${range(g.tmin,g.tmax,'Min.')}</td><td>Halle ${g.hall}, ${esc(g.booth)}</td><td class="tags">${esc(g.mech.slice(0,4).join(', '))}</td></tr>`).join('');
+ $('#list').innerHTML=l.map(g=>{
+  const figs=g.imgs.map(i=>`<figure><img src="${esc(i.src)}" alt="${esc(g.name)}: ${esc(i.cap)}" loading="lazy" referrerpolicy="no-referrer"><figcaption>${esc(i.cap)}</figcaption></figure>`).join('');
+  const facts=[['Auf der Messe','Halle '+g.hall+', Stand '+g.booth+(g.locnote?' ('+g.locnote+')':'')],['Spielende',range(g.pmin,g.pmax,'')+' (ab '+g.age.replace('+',' Jahren')+')'],['Dauer',range(g.tmin,g.tmax,'Min.')],...g.facts].map(f=>`<dt>${esc(f[0])}</dt><dd>${esc(f[1])}</dd>`).join('');
+  return `<article id="${g.id}"><div class="pics">${figs}</div><div class="body">
+   <h2>${esc(g.name)}</h2><div class="meta">${esc(g.pub!=='—'?g.pub+' · ':'')}${esc(g.kind)}</div>
+   <p>${esc(g.text)}</p>
+   <div class="classify"><h4>Einordnung</h4>
+    <p>${dots(g.cx)} Komplexität ${g.cx} von 5 <span style="color:var(--muted)">(meine Einschätzung)</span></p>
+    <p>${g.mech.map(m=>`<span class="tag">${esc(m)}</span>`).join('')}</p>
+    <p>${esc(g.fit)}</p>
+    <p><strong>Ähnlich wie:</strong> ${esc(g.sim.join(', '))}</p></div>
+   <dl>${facts}</dl>
+   ${g.extra?`<p>${esc(g.extra)}</p>`:''}
+   <div class="links">${g.links.map(x=>`<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc(x[0])}</a>`).join('')}</div>
+  </div></article>`;}).join('');
+}
+
+HALLS.forEach(h=>{const o=document.createElement('option');o.value=h;o.textContent='Halle '+h+' ('+GAMES.filter(g=>g.hall===h).length+')';$('#hall').appendChild(o)});
+$('#hall').addEventListener('change',e=>{state.hall=+e.target.value;render()});
+$('#sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
+$('#players').addEventListener('change',e=>{state.players=+e.target.value;render()});
+$('#maxtime').addEventListener('change',e=>{state.maxtime=+e.target.value;render()});
+$('#q').addEventListener('input',e=>{state.q=e.target.value.trim().toLowerCase();render()});
+document.querySelectorAll('#cxchips .chip').forEach(b=>b.addEventListener('click',()=>{
+ const k=b.dataset.cx;const on=!state.cx.has(k);on?state.cx.add(k):state.cx.delete(k);b.setAttribute('aria-pressed',on);render();}));
+document.querySelectorAll('#tbl th[data-s]').forEach(th=>th.addEventListener('click',()=>{
+ const m={name:'name',cx:'cx-asc',pmin:'pmax-desc',time:'time-asc',hall:'hall'};
+ const cur=$('#sort').value; let next=m[th.dataset.s];
+ if(th.dataset.s==='cx'&&cur==='cx-asc') next='cx-desc';
+ if(th.dataset.s==='time'&&cur==='time-asc') next='time-desc';
+ $('#sort').value=next;state.sort=next;render();}));
+render();
+</script>
+</body>
+</html>
