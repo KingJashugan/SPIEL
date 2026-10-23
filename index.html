@@ -61,6 +61,10 @@ dt{color:var(--muted)}dd{margin:0}
 .tag{display:inline-block;font:.75rem Arial,sans-serif;border:1px solid var(--line);background:var(--card);padding:1px 8px;border-radius:99px;margin:2px 4px 2px 0}
 .links{display:flex;flex-wrap:wrap;gap:8px 16px;font:600 .88rem Arial,sans-serif;margin-top:12px}
 .empty{margin-top:28px;color:var(--muted)}
+.vote{font:700 .85rem Arial,sans-serif;border:1px solid var(--accent);background:transparent;color:var(--accent);padding:6px 14px;border-radius:99px;cursor:pointer;margin:2px 0 8px}
+.vote:hover{background:var(--chip)}
+.vote[aria-pressed=true]{background:var(--accent);color:#fff}
+.vstat{font:.75rem Arial,sans-serif;color:var(--muted)}
 footer{margin-top:40px;font-size:.88rem;color:var(--muted)}
 </style>
 </head>
@@ -81,6 +85,7 @@ footer{margin-top:40px;font-size:.88rem;color:var(--muted)}
 <option value="time-asc">Dauer: kurz zuerst</option>
 <option value="time-desc">Dauer: lang zuerst</option>
 <option value="pmax-desc">Meiste Spielende zuerst</option>
+<option value="votes">Interesse (meiste Stimmen zuerst)</option>
 <option value="hall">Halle und Stand</option>
 </select></label>
 <label>Halle
@@ -89,6 +94,7 @@ footer{margin-top:40px;font-size:.88rem;color:var(--muted)}
 <select id="players"><option value="0">egal</option><option value="1">1 (solo)</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select></label>
 <label>Dauer bis
 <select id="maxtime"><option value="0">egal</option><option value="30">30 Min.</option><option value="60">60 Min.</option><option value="90">90 Min.</option><option value="120">120 Min.</option></select></label>
+<label><input type="checkbox" id="mine"> Nur meine Favoriten</label>
 <label><input type="search" id="q" placeholder="Suche (Name, Mechanik …)" aria-label="Suche"></label>
 </div>
 <div class="row" style="margin-top:8px">
@@ -98,12 +104,12 @@ footer{margin-top:40px;font-size:.88rem;color:var(--muted)}
 <button class="chip" type="button" data-cx="mid" aria-pressed="false">Mittel (3)</button>
 <button class="chip" type="button" data-cx="hard" aria-pressed="false">Schwer (4–5)</button>
 </div>
-<span class="count" id="count" role="status"></span>
+<span class="count"><span class="vstat" id="vstat"></span> · <span id="count" role="status"></span></span>
 </div>
 </div>
 
 <div class="tablewrap"><table id="tbl"><thead><tr>
-<th data-s="name">Spiel</th><th data-s="cx">Komplexität</th><th data-s="pmin">Spielende</th><th data-s="time">Dauer</th><th data-s="hall">Halle / Stand</th><th>Mechaniken</th>
+<th data-s="name">Spiel</th><th data-s="votes">Interesse</th><th data-s="cx">Komplexität</th><th data-s="pmin">Spielende</th><th data-s="time">Dauer</th><th data-s="hall">Halle / Stand</th><th>Mechaniken</th>
 </tr></thead><tbody></tbody></table></div>
 
 <div id="list"></div>
@@ -360,7 +366,8 @@ GAMES.forEach(g=>{const l=LOC[g.id];g.booth=l.booth;g.locnote=l.note||'';g.hall=
 const HALLS=[...new Set(GAMES.map(g=>g.hall))].sort((a,b)=>a-b);
 
 const $=s=>document.querySelector(s);
-const state={sort:'rec',players:0,maxtime:0,hall:0,q:'',cx:new Set(),col:null,dir:1};
+let lastOrder='';
+const state={sort:'rec',players:0,maxtime:0,hall:0,mine:false,q:'',cx:new Set(),col:null,dir:1};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const cxClass=c=>c<=2?'easy':c===3?'mid':'hard';
 const dots=c=>'<span class="dots" title="Komplexität '+c+' von 5 (meine Einschätzung)">'+'●'.repeat(c)+'<i>'+'●'.repeat(5-c)+'</i></span>';
@@ -371,6 +378,7 @@ function view(){
   if(state.players && !(g.pmin<=state.players && state.players<=g.pmax)) return false;
   if(state.maxtime && g.tmin>state.maxtime) return false;
   if(state.hall && g.hall!==state.hall) return false;
+  if(state.mine && !Votes.mine.has(g.id)) return false;
   if(state.cx.size && !state.cx.has(cxClass(g.cx))) return false;
   if(state.q){const t=(g.name+' '+g.pub+' '+g.kind+' '+g.mech.join(' ')+' '+g.sim.join(' ')).toLowerCase();if(!t.includes(state.q)) return false;}
   return true;});
@@ -379,6 +387,7 @@ function view(){
   'cx-asc':(a,b)=>a.cx-b.cx||a.rec-b.rec,'cx-desc':(a,b)=>b.cx-a.cx||a.rec-b.rec,
   'time-asc':(a,b)=>a.tmax-b.tmax||a.rec-b.rec,'time-desc':(a,b)=>b.tmax-a.tmax||a.rec-b.rec,
   'pmax-desc':(a,b)=>b.pmax-a.pmax||a.rec-b.rec,
+  votes:(a,b)=>(Votes.counts[b.id]||0)-(Votes.counts[a.id]||0)||a.rec-b.rec,
   hall:(a,b)=>a.hall-b.hall||a.booth.localeCompare(b.booth,'de',{numeric:true})||a.rec-b.rec}[s];
  l.sort(by);
  return l;
@@ -386,15 +395,17 @@ function view(){
 
 function render(){
  const l=view();
+ lastOrder=l.map(g=>g.id).join();
  $('#count').textContent=l.length+' von '+GAMES.length+' Spielen';
  $('#empty').hidden=l.length>0;
- $('#tbl tbody').innerHTML=l.map(g=>`<tr><td><a href="#${g.id}">${esc(g.name)}</a></td><td>${dots(g.cx)}</td><td>${range(g.pmin,g.pmax,'')}</td><td>${range(g.tmin,g.tmax,'Min.')}</td><td>Halle ${g.hall}, ${esc(g.booth)}</td><td class="tags">${esc(g.mech.slice(0,4).join(', '))}</td></tr>`).join('');
+ $('#tbl tbody').innerHTML=l.map(g=>`<tr><td><a href="#${g.id}">${esc(g.name)}</a></td><td><span data-vcount="${g.id}">0</span> ★</td><td>${dots(g.cx)}</td><td>${range(g.pmin,g.pmax,'')}</td><td>${range(g.tmin,g.tmax,'Min.')}</td><td>Halle ${g.hall}, ${esc(g.booth)}</td><td class="tags">${esc(g.mech.slice(0,4).join(', '))}</td></tr>`).join('');
  $('#list').innerHTML=l.map(g=>{
   const figs=g.imgs.map(i=>`<figure><img src="${esc(i.src)}" alt="${esc(g.name)}: ${esc(i.cap)}" loading="lazy" referrerpolicy="no-referrer"><figcaption>${esc(i.cap)}</figcaption></figure>`).join('');
   const facts=[['Auf der Messe','Halle '+g.hall+', Stand '+g.booth+(g.locnote?' ('+g.locnote+')':'')],['Spielende',range(g.pmin,g.pmax,'')+' (ab '+g.age.replace('+',' Jahren')+')'],['Dauer',range(g.tmin,g.tmax,'Min.')],...g.facts].map(f=>`<dt>${esc(f[0])}</dt><dd>${esc(f[1])}</dd>`).join('');
   const multi=g.imgs.length>1;
   return `<article id="${g.id}"><div class="pics"><div class="track" tabindex="0" role="group" aria-label="Bilder zu ${esc(g.name)}">${figs}</div>${multi?'<button class="nav prev" type="button" aria-label="Vorheriges Bild">‹</button><button class="nav next" type="button" aria-label="Nächstes Bild">›</button><span class="cnt">1 / '+g.imgs.length+'</span>':''}</div><div class="body">
    <h2>${esc(g.name)}</h2><div class="meta">${esc(g.pub!=='—'?g.pub+' · ':'')}${esc(g.kind)}</div>
+   <button class="vote" type="button" data-vote="${g.id}" aria-pressed="false"><span class="vl">☆ Interessiert mich</span> · <b>0</b></button>
    <p>${esc(g.text)}</p>
    <div class="classify"><h4>Einordnung</h4>
     <p>${dots(g.cx)} Komplexität ${g.cx} von 5 <span style="color:var(--muted)">(meine Einschätzung)</span></p>
@@ -405,7 +416,28 @@ function render(){
    ${g.extra?`<p>${esc(g.extra)}</p>`:''}
    <div class="links">${g.links.map(x=>`<a href="${esc(x[1])}" target="_blank" rel="noopener">${esc(x[0])}</a>`).join('')}</div>
   </div></article>`;}).join('');
+ applyVotes(false);
 }
+
+// Voting: lokal im Browser, gemeinsam über Firebase (siehe Modul-Skript unten)
+const Votes=window.Votes={mode:'local',counts:{},mine:new Set(),
+ status:'Stimmen nur auf diesem Gerät (gemeinsamer Speicher nicht verbunden)',
+ toggle(id){
+  if(this.mine.has(id)) this.mine.delete(id); else this.mine.add(id);
+  this.counts[id]=this.mine.has(id)?1:0;
+  try{localStorage.setItem('spiel-votes',JSON.stringify([...this.mine]))}catch(e){}
+  this.changed();},
+ changed(){applyVotes(true)}};
+try{JSON.parse(localStorage.getItem('spiel-votes')||'[]').forEach(id=>{Votes.mine.add(id);Votes.counts[id]=1})}catch(e){}
+function applyVotes(allowRerender){
+ if(allowRerender && (state.sort==='votes'||state.mine) && view().map(g=>g.id).join()!==lastOrder){render();return;}
+ document.querySelectorAll('[data-vote]').forEach(b=>{const id=b.dataset.vote,on=Votes.mine.has(id);
+  b.setAttribute('aria-pressed',on);b.querySelector('.vl').textContent=on?'★ Interessiert mich':'☆ Interessiert mich';b.querySelector('b').textContent=Votes.counts[id]||0;});
+ document.querySelectorAll('[data-vcount]').forEach(c=>{c.textContent=Votes.counts[c.dataset.vcount]||0});
+ $('#vstat').textContent=Votes.status;
+}
+$('#list').addEventListener('click',e=>{const b=e.target.closest('.vote');if(b)Votes.toggle(b.dataset.vote)});
+$('#mine').addEventListener('change',e=>{state.mine=e.target.checked;render()});
 
 HALLS.forEach(h=>{const o=document.createElement('option');o.value=h;o.textContent='Halle '+h+' ('+GAMES.filter(g=>g.hall===h).length+')';$('#hall').appendChild(o)});
 $('#hall').addEventListener('change',e=>{state.hall=+e.target.value;render()});
@@ -416,7 +448,7 @@ $('#q').addEventListener('input',e=>{state.q=e.target.value.trim().toLowerCase()
 document.querySelectorAll('#cxchips .chip').forEach(b=>b.addEventListener('click',()=>{
  const k=b.dataset.cx;const on=!state.cx.has(k);on?state.cx.add(k):state.cx.delete(k);b.setAttribute('aria-pressed',on);render();}));
 document.querySelectorAll('#tbl th[data-s]').forEach(th=>th.addEventListener('click',()=>{
- const m={name:'name',cx:'cx-asc',pmin:'pmax-desc',time:'time-asc',hall:'hall'};
+ const m={name:'name',cx:'cx-asc',pmin:'pmax-desc',time:'time-asc',hall:'hall',votes:'votes'};
  const cur=$('#sort').value; let next=m[th.dataset.s];
  if(th.dataset.s==='cx'&&cur==='cx-asc') next='cx-desc';
  if(th.dataset.s==='time'&&cur==='time-asc') next='time-desc';
@@ -434,6 +466,36 @@ $('#list').addEventListener('scroll',e=>{
  const c=t.parentNode.querySelector('.cnt');
  if(c)c.textContent=(Math.round(t.scrollLeft/t.clientWidth)+1)+' / '+t.children.length;},true);
 render();
+</script>
+<script type="module">
+// Gemeinsamer Stimmen-Speicher. Hier die Firebase-Web-Konfiguration eintragen
+// (Projekteinstellungen > Allgemein > Deine Apps > SDK-Konfiguration). Ohne Konfiguration bleibt es lokal.
+const CFG = null;
+
+if (CFG) {
+ const V = window.Votes;
+ try {
+  const base = 'https://www.gstatic.com/firebasejs/10.14.1/';
+  const { initializeApp } = await import(base + 'firebase-app.js');
+  const { getAuth, signInAnonymously } = await import(base + 'firebase-auth.js');
+  const { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc, serverTimestamp } = await import(base + 'firebase-firestore.js');
+  const app = initializeApp(CFG), db = getFirestore(app);
+  const uid = (await signInAnonymously(getAuth(app))).user.uid;
+  onSnapshot(collection(db, 'votes'), snap => {
+   const counts = {}, mine = new Set();
+   snap.forEach(d => { const x = d.data(); counts[x.game] = (counts[x.game] || 0) + 1; if (x.uid === uid) mine.add(x.game); });
+   V.counts = counts; V.mine = mine; V.mode = 'shared';
+   V.status = 'Stimmen gemeinsam gespeichert, eine Stimme pro Browser';
+   V.changed();
+  }, err => { V.status = 'Gemeinsamer Speicher nicht erreichbar (' + err.code + ')'; V.changed(); });
+  V.toggle = async id => {
+   try {
+    const ref = doc(db, 'votes', id + '_' + uid);
+    if (V.mine.has(id)) await deleteDoc(ref); else await setDoc(ref, { game: id, uid, ts: serverTimestamp() });
+   } catch (e) { V.status = 'Stimme nicht gespeichert (' + (e.code || e.message) + ')'; V.changed(); }
+  };
+ } catch (e) { V.status = 'Gemeinsamer Speicher nicht erreichbar (' + (e.code || e.message) + ')'; V.changed(); }
+}
 </script>
 </body>
 </html>
