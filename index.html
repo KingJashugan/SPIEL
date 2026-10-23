@@ -470,7 +470,14 @@ render();
 <script type="module">
 // Gemeinsamer Stimmen-Speicher. Hier die Firebase-Web-Konfiguration eintragen
 // (Projekteinstellungen > Allgemein > Deine Apps > SDK-Konfiguration). Ohne Konfiguration bleibt es lokal.
-const CFG = null;
+const CFG = {
+ apiKey: 'AIzaSyBsw-w-iauLYkvwrtgxZ8F0kuUH0YWOEEs',
+ authDomain: 'spiel-edac0.firebaseapp.com',
+ projectId: 'spiel-edac0',
+ storageBucket: 'spiel-edac0.firebasestorage.app',
+ messagingSenderId: '643760175502',
+ appId: '1:643760175502:web:b5b0dc5732783862528cdf'
+};
 
 if (CFG) {
  const V = window.Votes;
