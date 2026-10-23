@@ -66,13 +66,53 @@ dt{color:var(--muted)}dd{margin:0}
 .vote[aria-pressed=true]{background:var(--accent);color:#fff}
 .vstat{font:.75rem Arial,sans-serif;color:var(--muted)}
 footer{margin-top:40px;font-size:.88rem;color:var(--muted)}
+.note summary{cursor:pointer;font-weight:700}
+.note p{margin:8px 0 0}
+#totop{display:none;position:fixed;right:max(14px,env(safe-area-inset-right,0px));bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:6;border:1px solid var(--accent);background:var(--card);color:var(--accent);font:700 .85rem Arial,sans-serif;padding:10px 14px;border-radius:99px;box-shadow:0 2px 8px rgba(0,0,0,.3);cursor:pointer}
+/* Handy-Ansicht */
+@media(max-width:720px){
+ html{-webkit-text-size-adjust:100%}
+ .wrap{padding:20px max(16px,env(safe-area-inset-right,0px)) 88px max(16px,env(safe-area-inset-left,0px))}
+ h1{font-size:2rem}
+ .bar{position:static;border:0;padding:0}
+ .bar .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+ .bar .row:last-child{display:flex;flex-wrap:wrap;gap:8px}
+ .bar label{flex-direction:column;align-items:stretch;gap:4px}
+ .bar label:first-child,.bar label:has(#q){grid-column:1/-1}
+ .bar label:has(#mine){flex-direction:row;align-items:center;min-height:44px}
+ select,input[type=search]{font-size:16px;min-height:44px;width:100%}
+ input[type=checkbox]{width:22px;height:22px;min-height:0}
+ .chip{min-height:40px;padding:6px 14px}
+ .count{margin-left:0;width:100%}
+ .tablewrap{border:0;background:transparent;overflow:visible}
+ table{min-width:0;display:block}
+ thead{display:none}
+ tbody{display:block}
+ tr{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;padding:12px;margin-bottom:8px;border:1px solid var(--line);background:var(--card)}
+ td{display:block;border:0;padding:0;white-space:normal;min-width:0}
+ td::before{content:attr(data-l);display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+ td:first-child{grid-column:1/-1;font-size:1rem;font-weight:700}
+ td:first-child::before{content:none}
+ td.tags{grid-column:1/-1;min-width:0}
+ article{margin-top:20px;scroll-margin-top:12px}
+ .body{padding:16px}
+ h2{font-size:1.35rem}
+ .nav{width:44px;height:44px;top:calc(50% - 44px)}
+ .vote{width:100%;min-height:46px;font-size:.95rem}
+ .links{gap:2px 18px}
+ .links a{padding:8px 0}
+ .classify{padding:10px 12px}
+ dl{grid-template-columns:1fr;gap:0}
+ dt{margin-top:8px;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em}
+ #totop{display:block}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
 <h1>SPIEL Essen <span>2026</span><br>Neuheiten-Bericht</h1>
 <p class="lead">22 Spiele, die in den Vorschauen von Meeple Mountain, Board Game Review, Wargamer, Gus &amp; Co und in den BGG-Listen immer wieder auftauchen. Stand: 23.10.2026, die Messe läuft vom 22. bis 25. Oktober.</p>
-<div class="note"><strong>So ist der Bericht entstanden:</strong> Mechaniken, Spielerzahl und Dauer stammen von den BGG-Spielseiten, Halle und Stand aus der BGG-GeekPreview zur SPIEL (Angaben der Verlage, bitte vor Ort auf dem Hallenplan gegenprüfen). Die Beschreibungen kommen aus den genannten Vorschauen. Die Komplexität (1 bis 5) und die Vergleichsspiele sind meine eigene Einschätzung auf Basis dieser Angaben. Die Spiele sind größtenteils noch nicht gespielt worden, nimm sie als Orientierung. Wertungen und BGG-Ranglistenplätze konnte ich nicht auslesen, die meisten Spiele sind noch zu neu. Alle Bilder sind unverändert von Verlagen, Magazinen und BGG verlinkt, nichts ist selbst erstellt.</div>
+<details class="note"><summary>So ist der Bericht entstanden</summary><p>Mechaniken, Spielerzahl und Dauer stammen von den BGG-Spielseiten, Halle und Stand aus der BGG-GeekPreview zur SPIEL (Angaben der Verlage, bitte vor Ort auf dem Hallenplan gegenprüfen). Die Beschreibungen kommen aus den genannten Vorschauen. Die Komplexität (1 bis 5) und die Vergleichsspiele sind meine eigene Einschätzung auf Basis dieser Angaben. Die Spiele sind größtenteils noch nicht gespielt worden, nimm sie als Orientierung. Wertungen und BGG-Ranglistenplätze konnte ich nicht auslesen, die meisten Spiele sind noch zu neu. Alle Bilder sind unverändert von Verlagen, Magazinen und BGG verlinkt, nichts ist selbst erstellt.</p></details>
 
 <div class="bar" id="bar">
 <div class="row">
@@ -120,6 +160,7 @@ footer{margin-top:40px;font-size:.88rem;color:var(--muted)}
 <p>Bildrechte liegen bei den jeweiligen Verlagen, Magazinen und BGG-Nutzern. Die Bilder werden von dort geladen, der Bericht braucht dafür Internet.</p>
 </footer>
 </div>
+<button id="totop" type="button" aria-label="Nach oben zu Filter und Sortierung">↑ Filter</button>
 
 <script>
 const BGG = (a,b,pic,cap)=>({src:`https://cf.geekdo-images.com/${a}__large/img/${b}/fit-in/1024x1024/filters:no_upscale():strip_icc()/${pic}`,cap:cap+' (BGG)'});
@@ -398,7 +439,7 @@ function render(){
  lastOrder=l.map(g=>g.id).join();
  $('#count').textContent=l.length+' von '+GAMES.length+' Spielen';
  $('#empty').hidden=l.length>0;
- $('#tbl tbody').innerHTML=l.map(g=>`<tr><td><a href="#${g.id}">${esc(g.name)}</a></td><td><span data-vcount="${g.id}">0</span> ★</td><td>${dots(g.cx)}</td><td>${range(g.pmin,g.pmax,'')}</td><td>${range(g.tmin,g.tmax,'Min.')}</td><td>Halle ${g.hall}, ${esc(g.booth)}</td><td class="tags">${esc(g.mech.slice(0,4).join(', '))}</td></tr>`).join('');
+ $('#tbl tbody').innerHTML=l.map(g=>`<tr><td><a href="#${g.id}">${esc(g.name)}</a></td><td data-l="Interesse"><span data-vcount="${g.id}">0</span> ★</td><td data-l="Komplexität">${dots(g.cx)}</td><td data-l="Spielende">${range(g.pmin,g.pmax,'')}</td><td data-l="Dauer">${range(g.tmin,g.tmax,'Min.')}</td><td data-l="Halle / Stand">Halle ${g.hall}, ${esc(g.booth)}</td><td class="tags" data-l="Mechaniken">${esc(g.mech.slice(0,4).join(', '))}</td></tr>`).join('');
  $('#list').innerHTML=l.map(g=>{
   const figs=g.imgs.map(i=>`<figure><img src="${esc(i.src)}" alt="${esc(g.name)}: ${esc(i.cap)}" loading="lazy" referrerpolicy="no-referrer"><figcaption>${esc(i.cap)}</figcaption></figure>`).join('');
   const facts=[['Auf der Messe','Halle '+g.hall+', Stand '+g.booth+(g.locnote?' ('+g.locnote+')':'')],['Spielende',range(g.pmin,g.pmax,'')+' (ab '+g.age.replace('+',' Jahren')+')'],['Dauer',range(g.tmin,g.tmax,'Min.')],...g.facts].map(f=>`<dt>${esc(f[0])}</dt><dd>${esc(f[1])}</dd>`).join('');
@@ -465,6 +506,7 @@ $('#list').addEventListener('scroll',e=>{
  const t=e.target;if(!t.classList||!t.classList.contains('track'))return;
  const c=t.parentNode.querySelector('.cnt');
  if(c)c.textContent=(Math.round(t.scrollLeft/t.clientWidth)+1)+' / '+t.children.length;},true);
+$('#totop').addEventListener('click',()=>$('#bar').scrollIntoView({behavior:'smooth'}));
 render();
 </script>
 <script type="module">
