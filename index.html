@@ -40,9 +40,15 @@ tbody tr:hover{background:var(--chip)}
 /* Karten */
 article{background:var(--card);border:1px solid var(--line);margin-top:28px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);scroll-margin-top:90px}
 @media(max-width:720px){article{grid-template-columns:1fr}}
-.pics{display:flex;flex-direction:column;gap:2px;background:var(--line)}
-.pics figure{margin:0;background:var(--card)}
-.pics img{display:block;width:100%;height:auto}
+.pics{position:relative;background:var(--line);min-width:0;align-self:start}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.track::-webkit-scrollbar{display:none}
+.pics figure{margin:0;background:var(--card);flex:0 0 100%;min-width:0;scroll-snap-align:start}
+.pics img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain;background:var(--chip)}
+.nav{position:absolute;top:calc(50% - 40px);width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);font:700 1.3rem/1 Arial,sans-serif;cursor:pointer;opacity:.92;padding:0}
+.nav:hover{border-color:var(--accent);color:var(--accent)}
+.nav.prev{left:8px}.nav.next{right:8px}
+.cnt{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.65);color:#fff;font:600 .72rem Arial,sans-serif;padding:2px 8px;border-radius:99px}
 figcaption{font:.75rem Arial,sans-serif;color:var(--muted);padding:4px 10px 6px}
 .body{padding:20px 22px;min-width:0}
 h2{font:800 1.6rem/1.1 'Arial Narrow',Arial,sans-serif;text-transform:uppercase;margin:0 0 4px}
@@ -386,7 +392,8 @@ function render(){
  $('#list').innerHTML=l.map(g=>{
   const figs=g.imgs.map(i=>`<figure><img src="${esc(i.src)}" alt="${esc(g.name)}: ${esc(i.cap)}" loading="lazy" referrerpolicy="no-referrer"><figcaption>${esc(i.cap)}</figcaption></figure>`).join('');
   const facts=[['Auf der Messe','Halle '+g.hall+', Stand '+g.booth+(g.locnote?' ('+g.locnote+')':'')],['Spielende',range(g.pmin,g.pmax,'')+' (ab '+g.age.replace('+',' Jahren')+')'],['Dauer',range(g.tmin,g.tmax,'Min.')],...g.facts].map(f=>`<dt>${esc(f[0])}</dt><dd>${esc(f[1])}</dd>`).join('');
-  return `<article id="${g.id}"><div class="pics">${figs}</div><div class="body">
+  const multi=g.imgs.length>1;
+  return `<article id="${g.id}"><div class="pics"><div class="track" tabindex="0" role="group" aria-label="Bilder zu ${esc(g.name)}">${figs}</div>${multi?'<button class="nav prev" type="button" aria-label="Vorheriges Bild">‹</button><button class="nav next" type="button" aria-label="Nächstes Bild">›</button><span class="cnt">1 / '+g.imgs.length+'</span>':''}</div><div class="body">
    <h2>${esc(g.name)}</h2><div class="meta">${esc(g.pub!=='—'?g.pub+' · ':'')}${esc(g.kind)}</div>
    <p>${esc(g.text)}</p>
    <div class="classify"><h4>Einordnung</h4>
@@ -414,6 +421,18 @@ document.querySelectorAll('#tbl th[data-s]').forEach(th=>th.addEventListener('cl
  if(th.dataset.s==='cx'&&cur==='cx-asc') next='cx-desc';
  if(th.dataset.s==='time'&&cur==='time-asc') next='time-desc';
  $('#sort').value=next;state.sort=next;render();}));
+$('#list').addEventListener('click',e=>{
+ const b=e.target.closest('.nav');if(!b)return;
+ const t=b.parentNode.querySelector('.track');
+ t.scrollBy({left:(b.classList.contains('next')?1:-1)*t.clientWidth,behavior:'smooth'});});
+$('#list').addEventListener('keydown',e=>{
+ const t=e.target.closest&&e.target.closest('.track');if(!t)return;
+ if(e.key==='ArrowRight'){t.scrollBy({left:t.clientWidth,behavior:'smooth'});e.preventDefault()}
+ if(e.key==='ArrowLeft'){t.scrollBy({left:-t.clientWidth,behavior:'smooth'});e.preventDefault()}});
+$('#list').addEventListener('scroll',e=>{
+ const t=e.target;if(!t.classList||!t.classList.contains('track'))return;
+ const c=t.parentNode.querySelector('.cnt');
+ if(c)c.textContent=(Math.round(t.scrollLeft/t.clientWidth)+1)+' / '+t.children.length;},true);
 render();
 </script>
 </body>
